@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
-import { useContext } from 'react'
-import { AuthContext } from '../context/auth'
 import { Home } from '../pages/Home'
 import { SignIn } from '../pages/SignIn'
 import { Inscricao } from '../pages/Inscricao'
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/auth';
 
-const Private = ({ children }: { children: JSX.Element }) => {
-    const { signed } = useContext(AuthContext)
-    return signed ? children : <Navigate to="/signin" />
+const Private = ({ children }: { children: React.ReactNode }) => {
+    const { signed } = useContext(AuthContext);
+
+    return signed ? <>{children}</> : <Navigate to="/signin" />;
 }
 
 export const RoutesApp = () => {
